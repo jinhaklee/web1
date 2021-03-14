@@ -1,19 +1,23 @@
 <!doctype html>
 <html>
 <head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <title>WEB1-Welcome</title>
 <meta charset="utf-8">
 <style>
+.search-bar {
+  width: 500px;
+}
 body{
-    margin:0;
-  }
+margin: 0;
+}
   input{
     position: relative;
     left: 30px;
     bottom: -10px;
   }
   a {
-    color:red;
+    color:blue;
   }
   h1 {
     font-size: 45px;
@@ -24,7 +28,7 @@ body{
   }
   ol{
     border-right:1px solid gray;
-    width:100px;
+    width:140px;
     margin:0;
     padding:20px;
   }
@@ -56,20 +60,54 @@ body{
     padding:25px;
   }
 </style>
+<script>
+var Links = {
+  setColor:function(color){
+    var alist = document.querySelectorAll('a');
+    var i=0;
+    while(i < alist.length){
+      alist[i].style.color = color;
+      i=i+1;
+      }
+    }
+  }
+  var Body = {
+    setColor:function(color){
+      document.querySelector('body').style.color = color;
+  },
+  setBackgroundColor: function(color){
+    document.querySelector('body').style.backgroundColor = color;
+  }
+}
+  function nightdayhandler(self){
+    var target = document.querySelector('body');
+    if(self.value === 'night'){
+      Body.setBackgroundColor('black');
+      Body.setColor('white');
+      self.value = 'day';
+
+      Links.setColor('powderblue');
+    } else {
+      Body.setBackgroundColor('white');
+      Body.setColor('black');
+      self.value = 'night';
+
+      Links.setColor('blue');
+      }
+    }
+</script>
 </head>
 <body>
   <h1><a href="index.html">WEB</a></h1>
-  <input id="night_day" type="button" value="night" onclick="
-  if(document.querySelector('#night_day').value === 'night'){
-    document.querySelector('body').style.backgroundColor ='black';
-    document.querySelector('body').style.color ='white';
-    document.querySelector('#night_day').value = 'day';
-  }
-  else{
-    document.querySelector('body').style.backgroundColor ='white';
-    document.querySelector('body').style.color ='black';
-    document.querySelector('#night_day').value = 'night';
-  }
+  <form action="https://www.google.com/search" method="GET">
+    <div class="mx-auto mt-5 search-bar input-group mb-3">
+      <input name="q" type="text" class="form-control rounded-pill" placeholder="검색 또는 URL 입력" aria-label="Recipient's username" aria-describedby="button-addon2">
+      <div class="input-group-append">
+      </div>
+    </div>
+  </form>
+  <input type="button" value="night" onclick="
+    nightdayhandler(this);
   ">
 <div id="grid">
 <ol>
